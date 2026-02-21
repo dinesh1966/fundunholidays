@@ -1456,149 +1456,76 @@ img {
    🖼️ GALLERY SECTION
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   🎠 GALLERY - CYLINDRICAL 3D EFFECT (SAME) + SMALLER CARDS
-   More cards fit, no stuck issue, same spinning effect
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-
 .gallery-viewport {
-    width: 100% !important;
-    height: 480px !important;
-    perspective: 1200px !important;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    overflow: hidden !important;
+    width: 100%;
+    height: 500px;
+    perspective: 1500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }
 
 .gsap-slider-wrapper {
-    position: relative !important;
-    width: 160px !important;       /* card width reference */
-    height: 240px !important;      /* card height reference */
-    transform-style: preserve-3d !important;
-    animation: cylinderSpin 32s linear infinite !important;
-    display: block !important;
-    grid-template-columns: unset !important;
-    gap: unset !important;
+    position: relative;
+    width: 350px;
+    height: 450px;
+    transform-style: preserve-3d;
+    animation: cylinderSpin 28s linear infinite;
 }
 
 @keyframes cylinderSpin {
     from { transform: rotateY(0deg); }
-    to   { transform: rotateY(360deg); }
+    to { transform: rotateY(360deg); }
 }
 
 .gsap-slider-wrapper:hover {
-    animation-play-state: paused !important;
+    animation-play-state: paused;
 }
 
-/* ── Each slide ── */
-.gsap-slider-wrapper .slide {
-    position: absolute !important;
-    width: 160px !important;
-    height: 240px !important;
-    left: 50% !important;
-    top: 50% !important;
-    margin: -120px 0 0 -80px !important;
-    border-radius: 14px !important;
-    overflow: hidden !important;
-    cursor: zoom-in !important;
-    border: 2px solid rgba(212, 175, 55, 0.2) !important;
-    transition: transform 0.4s ease, box-shadow 0.4s ease !important;
-}
-
-.gsap-slider-wrapper .slide img {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-    border-radius: 14px !important;
-    border: none !important;
-    box-shadow:
-        0 20px 50px rgba(0,0,0,0.7),
-        inset 0 0 20px rgba(255,255,255,0.08) !important;
-    transition: all 0.4s ease !important;
-    display: block !important;
-}
-
-.gsap-slider-wrapper .slide:hover img {
-    transform: scale(1.08) !important;
-    border-color: #d4af37 !important;
-    box-shadow:
-        0 28px 60px rgba(0,0,0,0.9),
-        0 0 25px rgba(212,175,55,0.4),
-        inset 0 0 30px rgba(255,255,255,0.1) !important;
-}
-
-/* Shimmer on hover */
-.gsap-slider-wrapper .slide::before {
-    content: '';
+.slide {
     position: absolute;
-    top: 0;
-    left: -100%;
-    width: 40%;
+    width: 240px;
+    height: 360px;
+    left: 50%;
+    top: 50%;
+    margin: -180px 0 0 -120px;
+    border-radius: 22px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.slide img {
+    width: 100%;
     height: 100%;
-    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.15), transparent);
-    transform: skewX(-20deg);
-    transition: left 0.6s ease;
-    z-index: 2;
-    pointer-events: none;
+    object-fit: cover;
+    border-radius: 22px;
+    border: 3px solid rgba(212, 175, 55, 0.2);
+    box-shadow: 
+        0 25px 60px rgba(0, 0, 0, 0.7),
+        inset 0 0 30px rgba(255, 255, 255, 0.1);
+    transition: all 0.4s ease;
 }
 
-.gsap-slider-wrapper .slide:hover::before {
-    left: 150%;
+.slide:hover img {
+    transform: scale(1.1);
+    border-color: #d4af37;
+    box-shadow: 
+        0 35px 80px rgba(0, 0, 0, 0.9),
+        0 0 30px rgba(212, 175, 55, 0.4),
+        inset 0 0 40px rgba(255, 255, 255, 0.15);
 }
 
-/* ── 3D Positions — 8 cards, radius 280px ──
-   Formula: rotateY(n * 360/8) translateZ(280px)
-   Change card count below matching your HTML slides
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* 3D Cylinder Positioning */
+.slide:nth-child(1) { transform: rotateY(0deg) translateZ(450px); }
+.slide:nth-child(2) { transform: rotateY(51.4deg) translateZ(450px); }
+.slide:nth-child(3) { transform: rotateY(102.8deg) translateZ(450px); }
+.slide:nth-child(4) { transform: rotateY(154.2deg) translateZ(450px); }
+.slide:nth-child(5) { transform: rotateY(205.7deg) translateZ(450px); }
+.slide:nth-child(6) { transform: rotateY(257.1deg) translateZ(450px); }
+.slide:nth-child(7) { transform: rotateY(308.5deg) translateZ(450px); }
 
-/* ── 13 cards: 360/13 = 27.69deg gap, radius 350px ── */
-/* 11 cards: 360/11 = 32.73deg, same radius 280px */
-.gsap-slider-wrapper .slide:nth-child(1)  { transform: rotateY(0deg)     translateZ(280px) !important; }
-.gsap-slider-wrapper .slide:nth-child(2)  { transform: rotateY(32.73deg) translateZ(280px) !important; }
-.gsap-slider-wrapper .slide:nth-child(3)  { transform: rotateY(65.45deg) translateZ(280px) !important; }
-.gsap-slider-wrapper .slide:nth-child(4)  { transform: rotateY(98.18deg) translateZ(280px) !important; }
-.gsap-slider-wrapper .slide:nth-child(5)  { transform: rotateY(130.91deg) translateZ(280px) !important; }
-.gsap-slider-wrapper .slide:nth-child(6)  { transform: rotateY(163.64deg) translateZ(280px) !important; }
-.gsap-slider-wrapper .slide:nth-child(7)  { transform: rotateY(196.36deg) translateZ(280px) !important; }
-.gsap-slider-wrapper .slide:nth-child(8)  { transform: rotateY(229.09deg) translateZ(280px) !important; }
-.gsap-slider-wrapper .slide:nth-child(9)  { transform: rotateY(261.82deg) translateZ(280px) !important; }
-.gsap-slider-wrapper .slide:nth-child(10) { transform: rotateY(294.55deg) translateZ(280px) !important; }
-.gsap-slider-wrapper .slide:nth-child(11) { transform: rotateY(327.27deg) translateZ(280px) !important; }
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   📱 MOBILE
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-
-@media (max-width: 768px) {
-    .gallery-viewport {
-        height: 380px !important;
-    }
-
-    .gsap-slider-wrapper {
-        width: 120px !important;
-        height: 180px !important;
-    }
-
-    .gsap-slider-wrapper .slide {
-        width: 120px !important;
-        height: 180px !important;
-        margin: -90px 0 0 -60px !important;
-        border-radius: 10px !important;
-    }
-
-    /* Mobile - 13 cards, radius 240px */
-.gsap-slider-wrapper .slide:nth-child(1)  { transform: rotateY(0deg)     translateZ(210px) !important; }
-.gsap-slider-wrapper .slide:nth-child(2)  { transform: rotateY(32.73deg) translateZ(210px) !important; }
-.gsap-slider-wrapper .slide:nth-child(3)  { transform: rotateY(65.45deg) translateZ(210px) !important; }
-.gsap-slider-wrapper .slide:nth-child(4)  { transform: rotateY(98.18deg) translateZ(210px) !important; }
-.gsap-slider-wrapper .slide:nth-child(5)  { transform: rotateY(130.91deg) translateZ(210px) !important; }
-.gsap-slider-wrapper .slide:nth-child(6)  { transform: rotateY(163.64deg) translateZ(210px) !important; }
-.gsap-slider-wrapper .slide:nth-child(7)  { transform: rotateY(196.36deg) translateZ(210px) !important; }
-.gsap-slider-wrapper .slide:nth-child(8)  { transform: rotateY(229.09deg) translateZ(210px) !important; }
-.gsap-slider-wrapper .slide:nth-child(9)  { transform: rotateY(261.82deg) translateZ(210px) !important; }
-.gsap-slider-wrapper .slide:nth-child(10) { transform: rotateY(294.55deg) translateZ(210px) !important; }
-.gsap-slider-wrapper .slide:nth-child(11) { transform: rotateY(327.27deg) translateZ(210px) !important; }
-}
 /* Image Popup */
 .image-popup {
     position: fixed;
@@ -2031,6 +1958,7 @@ img {
 
 .live-notification {
     position: fixed;
+    top: auto;
     bottom: 30px;
     left: 30px;
     background: rgba(0, 0, 0, 0.95);
@@ -4737,7 +4665,167 @@ body.overlay-open {
     backface-visibility: hidden;
     transform: translateZ(0);
 }
+@keyframes bounceArrow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
 
+@keyframes gridItemIn {
+  from { opacity: 0; transform: translateY(24px) scale(0.94); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   📷 GALLERY HOOK BUTTON - HERO SECTION
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.btn-gallery-hook {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: transparent;
+  border: 2px solid rgba(212, 175, 55, 0.5);
+  color: #d4af37;
+  padding: 14px 28px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: hookPulse 3s ease infinite;
+}
+
+/* Background fill on hover */
+.btn-gallery-hook::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(212,175,55,0.15), rgba(212,175,55,0.05));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.btn-gallery-hook:hover::before {
+  opacity: 1;
+}
+
+.btn-gallery-hook:hover {
+  border-color: #d4af37;
+  transform: translateY(-5px) scale(1.04);
+  box-shadow:
+    0 12px 40px rgba(212, 175, 55, 0.35),
+    0 0 0 1px rgba(212,175,55,0.2);
+  letter-spacing: 1.8px;
+}
+
+/* Camera icon bounce */
+.hook-camera {
+  font-size: 18px;
+  display: inline-block;
+  animation: cameraBounce 2.5s ease infinite;
+  transform-origin: center;
+}
+
+.btn-gallery-hook:hover .hook-camera {
+  animation: cameraShake 0.4s ease;
+}
+
+/* Text */
+.hook-text {
+  position: relative;
+  z-index: 1;
+}
+
+/* Count badge */
+.hook-count-badge {
+  background: linear-gradient(135deg, #d4af37, #b8962e);
+  color: #000;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 20px;
+  line-height: 1.4;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  animation: badgeFloat 2s ease infinite;
+}
+
+.btn-gallery-hook:hover .hook-count-badge {
+  transform: scale(1.12);
+  box-shadow: 0 4px 14px rgba(212,175,55,0.5);
+}
+
+/* Ripple ring */
+.hook-ripple {
+  position: absolute;
+  inset: -2px;
+  border-radius: 50px;
+  border: 2px solid rgba(212, 175, 55, 0.4);
+  animation: hookRipple 2.5s ease infinite;
+  pointer-events: none;
+}
+
+/* ── Keyframes ── */
+
+@keyframes hookPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(212,175,55,0);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(212,175,55,0.08);
+  }
+}
+
+@keyframes hookRipple {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  70% {
+    transform: scale(1.12);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.12);
+    opacity: 0;
+  }
+}
+
+@keyframes cameraBounce {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  20%       { transform: translateY(-4px) rotate(-8deg); }
+  40%       { transform: translateY(0) rotate(0deg); }
+  60%       { transform: translateY(-2px) rotate(5deg); }
+  80%       { transform: translateY(0) rotate(0deg); }
+}
+
+@keyframes cameraShake {
+  0%   { transform: rotate(0deg) scale(1); }
+  25%  { transform: rotate(-15deg) scale(1.2); }
+  50%  { transform: rotate(15deg) scale(1.2); }
+  75%  { transform: rotate(-8deg) scale(1.1); }
+  100% { transform: rotate(0deg) scale(1); }
+}
+
+@keyframes badgeFloat {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-3px); }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .btn-gallery-hook {
+    padding: 12px 22px;
+    font-size: 12px;
+    gap: 8px;
+  }
+  .hook-camera { font-size: 16px; }
+  .hook-count-badge { font-size: 10px; padding: 2px 8px; }
+}
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    ✅ END OF SILVER SHINING EFFECT
